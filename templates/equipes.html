@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipes</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .equipe-card {
+            border: 1px solid #00f0ff60;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #111;
+            box-shadow: 0 0 10px #00f0ff30;
+        }
+
+        .equipe-card strong {
+            font-size: 18px;
+            color: #00f0ff;
+            text-shadow: 0 0 5px #00f0ff;
+        }
+
+        .equipe-card a {
+            color: #00f0ff;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .top-buttons a {
+            color: #00f0ff;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 5px #00f0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-buttons">
+            <h2>Minhas Equipes</h2>
+            <a href="/nova_equipe">+ Nova Equipe</a>
+        </div>
+
+        {% if equipes %}
+            {% for equipe in equipes %}
+                <div class="equipe-card">
+                    <strong>{{ equipe[1] }}</strong><br>
+                    <small>{{ equipe[2] }}</small><br>
+                    <a href="/adicionar_membro/{{ equipe[0] }}">➕ Adicionar Membro</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: #ccc;">Nenhuma equipe cadastrada ainda.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

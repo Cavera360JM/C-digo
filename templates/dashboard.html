@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <p>Bem-vindo ao sistema de gerenciamento de equipes!</p>
+
+        <!-- Botão para listar equipes -->
+        <a href="/equipes">
+            <button>Ver minhas equipes</button>
+        </a>
+
+        <!-- Botão para criar nova equipe -->
+        <a href="/nova_equipe">
+            <button>Criar nova equipe</button>
+        </a>
+
+        <!-- Botão de logout -->
+        <form method="POST" action="/logout" style="margin-top: 20px;">
+            <button type="submit">Sair</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Membro</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Adicionar Membro à {{ equipe[0] }}</h2>
+        <form method="POST">
+            <select name="id_usuario" required style="width: 95%; padding: 10px;">
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario[0] }}">{{ usuario[1] }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="papel" placeholder="Papel na Equipe" required>
+            <button type="submit">Adicionar</button>
+        </form>
+        <a href="/equipes" style="color: #00f0ff;">← Voltar</a>
+    </div>
+</body>
+</html>
