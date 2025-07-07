@@ -11,7 +11,8 @@ def init_db():
             id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
             nome_completo TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
-            senha TEXT NOT NULL
+            senha TEXT NOT NULL,
+            imagem_perfil TEXT
         )
     ''')
 

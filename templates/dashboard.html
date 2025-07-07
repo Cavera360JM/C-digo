@@ -7,23 +7,32 @@
 </head>
 <body>
     <div class="container">
-        <h2>Dashboard</h2>
+        <div class="perfil">
+            <img src="/static/imagens/{{ imagem }}" alt="Foto do usuário">
+
+            <!-- Formulário para alterar o nome -->
+            <form method="POST" class="upload-form">
+                <input type="text" name="novo_nome" value="{{ nome }}" required>
+                <button type="submit" name="acao" value="atualizar_nome">Alterar Nome</button>
+            </form>
+
+            <!-- Formulário para alterar a imagem -->
+            <form method="POST" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="imagem" accept="image/*" required>
+                <button type="submit">Alterar Foto</button>
+            </form>
+        </div>
+
         <p>Bem-vindo ao sistema de gerenciamento de equipes!</p>
 
-        <!-- Botão para listar equipes -->
-        <a href="/equipes">
-            <button>Ver minhas equipes</button>
-        </a>
+        <div class="botoes">
+            <a href="/equipes"><button>Ver minhas equipes</button></a>
+            <a href="/nova_equipe"><button>Criar nova equipe</button></a>
 
-        <!-- Botão para criar nova equipe -->
-        <a href="/nova_equipe">
-            <button>Criar nova equipe</button>
-        </a>
-
-        <!-- Botão de logout -->
-        <form method="POST" action="/logout" style="margin-top: 20px;">
-            <button type="submit">Sair</button>
-        </form>
+            <form method="POST" action="/logout">
+                <button type="submit">Sair</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

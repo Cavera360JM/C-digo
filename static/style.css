@@ -68,3 +68,51 @@ button:hover {
     font-weight: bold;
     text-shadow: 0 0 5px #ff4444;
 }
+
+/* Novos estilos para perfil */
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 15px #00f0ff80;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.perfil input[type="text"] {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: #1a1a1a;
+    color: #ff3300;
+    box-shadow: 0 0 10px #00f0ff60;
+    outline: none;
+    width: 100%;
+}
+
+.perfil form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.botoes a, .botoes form {
+    width: 100%;
+}
