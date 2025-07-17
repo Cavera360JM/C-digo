@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Subtarefas da Tarefa {{ tarefa[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Subtarefas da Tarefa: {{ tarefa[0] }}</h2>
+
+        <form method="POST">
+            <input type="text" name="titulo" placeholder="Título da subtarefa" required>
+            <select name="status">
+                <option value="Pendente" selected>Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluída">Concluída</option>
+            </select>
+            <button type="submit">Adicionar Subtarefa</button>
+        </form>
+
+        {% if subtarefas %}
+            <ul>
+                {% for s in subtarefas %}
+                    <li>{{ s[2] }} - Status: {{ s[3] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhuma subtarefa cadastrada.</p>
+        {% endif %}
+
+        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
+    </div>
+</body>
+</html>

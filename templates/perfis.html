@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfis de Permissões</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Perfis de Permissões</h2>
+
+        <p><a href="/nova_perfil">+ Novo Perfil</a></p>
+
+        {% if perfis %}
+            <ul>
+                {% for perfil in perfis %}
+                    <li>
+                        {{ perfil[1] }}
+                        <a href="{{ url_for('perfil_permissoes', id_perfil=perfil[0]) }}">[Ver Permissões]</a>
+
+                        <form action="{{ url_for('excluir_perfil', id_perfil=perfil[0]) }}" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Confirma excluir este perfil e todas as suas permissões?');">Excluir</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum perfil cadastrado.</p>
+        {% endif %}
+
+        <p><a href="/dashboard">← Voltar para Dashboard</a></p>
+    </div>
+</body>
+</html>

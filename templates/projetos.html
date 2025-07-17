@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Projetos da Equipe {{ equipe[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Projetos da Equipe: {{ equipe[0] }}</h2>
+
+        <form method="POST" style="margin-bottom:20px;">
+            <input type="text" name="nome_projeto" placeholder="Nome do projeto" required>
+            <input type="text" name="descricao" placeholder="Descrição">
+            <input type="date" name="data_inicio">
+            <input type="date" name="data_fim">
+            <button type="submit">Adicionar Projeto</button>
+        </form>
+
+        {% if projetos %}
+            <ul>
+                {% for projeto in projetos %}
+                    <li>
+                        <a href="/tarefas/{{ projeto[0] }}">{{ projeto[2] }}</a> - {{ projeto[3] or '' }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum projeto cadastrado.</p>
+        {% endif %}
+
+        <p><a href="/equipes">← Voltar para Equipes</a></p>
+    </div>
+</body>
+</html>

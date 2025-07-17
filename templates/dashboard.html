@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        {% if mensagem %}
+            <p class="mensagem">{{ mensagem }}</p>
+        {% endif %}
+
+        <div class="perfil">
+            <img src="/static/imagens/{{ imagem }}" alt="Foto do usuário">
+
+            <form method="POST" class="upload-form">
+                <input type="text" name="novo_nome" value="{{ nome }}" required>
+                <button type="submit" name="acao" value="atualizar_nome">Alterar Nome</button>
+            </form>
+
+            <form method="POST" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="imagem" accept="image/*" required>
+                <button type="submit">Alterar Foto</button>
+            </form>
+        </div>
+            <center>   
+        <p>Bem-vindo ao sistema de gerenciamento de equipes!</p>
+            </center>
+        <div class="botoes">
+            <a href="/equipes"><button>Ver minhas equipes</button></a>
+            <a href="/nova_equipe"><button>Criar nova equipe</button></a>
+            <form method="POST" action="/logout">
+                <button type="submit">Sair</button>
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Meus Projetos por Equipe:</h3>
+        {% if equipes %}
+            <ul>
+                {% for equipe in equipes %}
+                    <li><a href="/projetos/{{ equipe[0] }}">{{ equipe[1] }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Você ainda não faz parte de nenhuma equipe.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

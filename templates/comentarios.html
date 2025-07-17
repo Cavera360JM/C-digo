@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Comentários da Tarefa {{ tarefa[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Comentários da Tarefa: {{ tarefa[0] }}</h2>
+
+        <form method="POST">
+            <textarea name="comentario" placeholder="Digite seu comentário" required style="width: 95%; height: 80px;"></textarea>
+            <button type="submit">Adicionar Comentário</button>
+        </form>
+
+        {% if comentarios %}
+            <ul>
+                {% for c in comentarios %}
+                    <li><strong>{{ c[1] }}</strong> ({{ c[3] }}):<br> {{ c[2] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Sem comentários ainda.</p>
+        {% endif %}
+
+        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Atribuições da Tarefa {{ tarefa[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Atribuir usuários à Tarefa: {{ tarefa[0] }}</h2>
+
+        <form method="POST">
+            <label for="id_usuario">Usuário:</label>
+            <select name="id_usuario" id="id_usuario" required>
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario[0] }}">{{ usuario[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="papel">Papel:</label>
+            <input type="text" name="papel" id="papel" placeholder="Ex: Responsável, Observador" required>
+
+            <button type="submit">Atribuir</button>
+        </form>
+
+        <h3>Usuários Atribuídos:</h3>
+        {% if atribuicoes %}
+            <ul>
+                {% for a in atribuicoes %}
+                    <li><strong>{{ a[1] }}</strong> — {{ a[2] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum usuário atribuído ainda.</p>
+        {% endif %}
+
+        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
+    </div>
+</body>
+</html>

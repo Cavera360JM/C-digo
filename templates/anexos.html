@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Anexos da Tarefa {{ tarefa[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Anexos da Tarefa: {{ tarefa[0] }}</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="arquivo" required>
+            <button type="submit">Enviar Anexo</button>
+        </form>
+
+        <h3>Arquivos:</h3>
+        {% if anexos %}
+            <ul>
+                {% for anexo in anexos %}
+                    <li><a href="/{{ anexo[3] }}" target="_blank">{{ anexo[2] }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum anexo enviado ainda.</p>
+        {% endif %}
+
+        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
+    </div>
+</body>
+</html>

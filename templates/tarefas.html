@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarefas do Projeto {{ projeto[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .tarefa-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .acoes {
+            margin-top: 5px;
+        }
+
+        .acoes a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            color: #007BFF;
+        }
+
+        .acoes a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tarefas do Projeto: {{ projeto[0] }}</h2>
+
+        <form method="POST" style="margin-bottom:20px;">
+            <input type="text" name="titulo" placeholder="Título da tarefa" required>
+            <input type="text" name="descricao" placeholder="Descrição">
+            <select name="status">
+                <option value="Pendente" selected>Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluída">Concluída</option>
+            </select>
+            <select name="prioridade">
+                <option value="Alta">Alta</option>
+                <option value="Média" selected>Média</option>
+                <option value="Baixa">Baixa</option>
+            </select>
+            <input type="date" name="data_entrega" placeholder="Data de entrega">
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+
+        {% if tarefas %}
+            {% for tarefa in tarefas %}
+                <div class="tarefa-container">
+                    <strong>{{ tarefa[2] }}</strong>  
+                    <p>Status: {{ tarefa[4] }} | Prioridade: {{ tarefa[5] }}</p>
+
+                    <div class="acoes">
+                        <a href="/subtarefas/{{ tarefa[0] }}">🔧 Subtarefas</a>
+                        <a href="/comentarios/{{ tarefa[0] }}">💬 Comentários</a>
+                        <a href="/anexos/{{ tarefa[0] }}">📎 Anexos</a>
+                        <a href="/atribuicoes/{{ tarefa[0] }}">👤 Atribuições</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhuma tarefa cadastrada.</p>
+        {% endif %}
+
+        <p><a href="/projetos/{{ id_equipe }}">← Voltar para Projetos</a></p>
+    </div>
+</body>
+</html>

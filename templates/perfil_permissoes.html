@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Permissões do Perfil {{ perfil[0] }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Permissões do Perfil: {{ perfil[0] }}</h2>
+
+        <form method="POST">
+            <label for="nome_permissao">Nome da Permissão:</label>
+            <input type="text" name="nome_permissao" required>
+
+            <label>
+                <input type="checkbox" name="permitido">
+                Permitido
+            </label>
+
+            <button type="submit">Adicionar Permissão</button>
+        </form>
+
+        <h3>Permissões:</h3>
+        {% if permissoes %}
+            <ul>
+                {% for p in permissoes %}
+                    <li>
+                        {{ p[2] }} — {{ 'Sim' if p[3] else 'Não' }}
+                        <form action="{{ url_for('excluir_permissao', id_permissao=p[0], id_perfil=id_perfil) }}" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('Confirma excluir esta permissão?');">Excluir</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhuma permissão cadastrada ainda.</p>
+        {% endif %}
+
+        <p><a href="{{ url_for('perfis') }}">← Voltar para Perfis</a></p>
+    </div>
+</body>
+</html>

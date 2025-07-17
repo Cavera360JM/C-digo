@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Equipe</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Equipe</h2>
+        <form method="POST">
+            <input type="text" name="nome" value="{{ equipe[1] }}" required>
+            <input type="text" name="descricao" value="{{ equipe[2] }}" required>
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        <a href="/equipes" style="color: #00f0ff;">← Voltar</a>
+    </div>
+</body>
+</html>

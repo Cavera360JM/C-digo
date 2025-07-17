@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro</h2>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Senha:</label>
+            <input type="password" name="senha" required>
+
+            <label>Perfil:</label>
+            <select name="id_perfil" required>
+                {% for perfil in perfis %}
+                    <option value="{{ perfil[0] }}">{{ perfil[1] }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <p><a href="/login">← Voltar para o Login</a></p>
+    </div>
+</body>
+</html>

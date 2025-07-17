@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Perfil</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Criar Novo Perfil</h2>
+        <form method="POST">
+            <label for="nome_perfil">Nome do Perfil:</label>
+            <input type="text" name="nome_perfil" id="nome_perfil" required>
+            <button type="submit">Criar Perfil</button>
+        </form>
+        <p><a href="{{ url_for('perfis') }}">← Voltar para Perfis</a></p>
+    </div>
+</body>
+</html>
