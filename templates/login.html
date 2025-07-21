@@ -4,21 +4,51 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+
+    <!-- LOGO COM CSS PURO -->
+    <header class="top-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <div class="circle"></div>
+                <div class="check"></div>
+            </div>
+            <div class="logo-text">
+                <span class="title">TASK</span>
+                <span class="subtitle">MANAGEMENT</span>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
         <h2>Login</h2>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         {% if error %}
             <p class="erro">{{ error }}</p>
         {% endif %}
+
         <form method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="senha" placeholder="Senha" required>
             <button type="submit">Entrar</button>
         </form>
-        <p style="margin-top: 15px;">
-            <a href="/cadastro" style="color: #00f0ff;">Criar conta</a>
+
+        <p style="margin-top: 15px; text-align: center;">
+            <a href="/cadastro">Criar conta</a>
         </p>
     </div>
+
 </body>
 </html>
