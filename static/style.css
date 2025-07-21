@@ -6,27 +6,99 @@
 }
 
 body {
-    background-color: #000;
-    font-family: Arial, sans-serif;
-    color: #fff;
+    background-color: #0a0a0a;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #e0f7fa;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
+/* ===== LOGO / HEADER ===== */
+.top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    background-color: #0a0a0a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+
+.logo-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.logo-icon .circle {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #00bcd4;
+    border-radius: 50%;
+}
+
+.logo-icon .check {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 16px;
+    height: 8px;
+    border-left: 3px solid #00bcd4;
+    border-bottom: 3px solid #00bcd4;
+    transform: rotate(-45deg);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo-text .title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #00bcd4;
+    letter-spacing: 1px;
+}
+
+.logo-text .subtitle {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #bbb;
+    letter-spacing: 1px;
+}
+
+/* ===== CONTAINER ===== */
 .container {
     width: 90%;
     max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #0a0a0a;
-    border-radius: 10px;
-    box-shadow: 0 0 20px #00f0ff30;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #121212;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+}
+
+/* ===== TÍTULOS ===== */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #00f0ff;
+    text-shadow: 0 0 8px #00f0ff;
 }
 
 /* ===== FORMULÁRIOS ===== */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
 }
 
 input[type="text"],
@@ -34,61 +106,75 @@ input[type="email"],
 input[type="password"],
 input[type="file"],
 select {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #111;
-    color: #fff;
-    border: 1px solid #00f0ff40;
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #00f0ff50;
+    border-radius: 10px;
+    transition: border 0.3s, background 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus,
+select:focus {
+    outline: none;
+    border-color: #00f0ff;
+    background-color: #202020;
 }
 
 input::placeholder {
-    color: #999;
+    color: #aaa;
 }
 
+/* ===== BOTÕES ===== */
 button {
-    padding: 10px;
-    background-color: #00f0ff;
+    padding: 12px;
+    background: linear-gradient(to right, #00f0ff, #00cce0);
     color: #000;
-    border: none;
-    border-radius: 8px;
     font-weight: bold;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
-    background-color: #00cce0;
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #00f0ff80;
 }
 
 /* ===== LINKS ===== */
 a {
     color: #00f0ff;
     text-decoration: none;
+    transition: color 0.2s;
 }
 
 a:hover {
+    color: #00cce0;
     text-decoration: underline;
 }
 
-/* ===== LOGIN E CADASTRO ===== */
-h2 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #00f0ff;
-    text-shadow: 0 0 6px #00f0ff;
-}
-
+/* ===== MENSAGENS ===== */
 p.erro {
-    background-color: #ff3c3c;
+    background-color: #ff4c4c;
+    padding: 12px;
+    border-radius: 8px;
     color: #fff;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 15px;
     text-align: center;
 }
 
-/* ===== DASHBOARD ===== */
+.mensagem {
+    text-align: center;
+    background-color: #004d4d;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* ===== PERFIL ===== */
 .perfil {
     display: flex;
     flex-direction: column;
@@ -100,25 +186,16 @@ p.erro {
     width: 120px;
     height: 120px;
     border-radius: 50%;
+    border: 3px solid #00f0ff;
     object-fit: cover;
-    border: 2px solid #00f0ff;
     margin-bottom: 15px;
 }
 
 .upload-form {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 10px;
-}
-
-.mensagem {
-    text-align: center;
-    background-color: #005f5f;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 20px;
 }
 
 /* ===== BOTÕES DE AÇÃO ===== */
@@ -126,7 +203,7 @@ p.erro {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 /* ===== EQUIPES ===== */
@@ -137,18 +214,12 @@ p.erro {
     margin-bottom: 30px;
 }
 
-.top-buttons h2 {
-    color: #00f0ff;
-    text-shadow: 0 0 8px #00f0ff;
-}
-
 .top-buttons a {
     background: #00f0ff;
     color: #000;
-    padding: 10px 15px;
-    border-radius: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
     font-weight: bold;
-    text-decoration: none;
     box-shadow: 0 0 10px #00f0ff80;
     transition: background 0.3s, transform 0.2s;
 }
@@ -171,67 +242,57 @@ p.erro {
 }
 
 .equipe-card {
-    background: #111;
+    background: #181818;
     border: 1px solid #00f0ff40;
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 20px;
-    box-shadow: 0 0 12px #00f0ff30;
-    transition: transform 0.2s;
+    box-shadow: 0 0 15px #00f0ff30;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .equipe-card:hover {
     transform: scale(1.02);
+    box-shadow: 0 0 20px #00f0ff60;
 }
 
 .equipe-nome {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: #00f0ff;
+    margin-bottom: 10px;
     text-shadow: 0 0 5px #00f0ff;
 }
 
 .equipe-descricao {
     color: #ccc;
-    margin: 10px 0 15px;
-    font-size: 14px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
 }
 
 .equipe-actions {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.equipe-actions a,
-.equipe-actions form {
-    display: inline-block;
+    gap: 10px;
 }
 
 .equipe-actions a,
 .equipe-actions button {
-    background: #00f0ff20;
+    background: #00f0ff10;
     color: #00f0ff;
     border: 1px solid #00f0ff60;
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 14px;
-    text-decoration: none;
-    cursor: pointer;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
     transition: background 0.2s;
 }
 
 .equipe-actions a:hover,
 .equipe-actions button:hover {
-    background: #00f0ff40;
-}
-
-.equipe-actions form {
-    margin: 0;
+    background: #00f0ff30;
 }
 
 .no-equipes {
-    color: #ccc;
+    color: #aaa;
     font-style: italic;
     text-align: center;
     margin-top: 40px;
