@@ -6,16 +6,20 @@ def init_db():
     conn = sqlite3.connect('db/database.db')
     cursor = conn.cursor()
 
+    # Tabela de usuários (agora com id_perfil)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS usuarios_tb (
             id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
             nome_completo TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             senha TEXT NOT NULL,
-            imagem_perfil TEXT
+            imagem_perfil TEXT,
+            id_perfil INTEGER,
+            FOREIGN KEY(id_perfil) REFERENCES perfis_permissoes_tb(id_perfil)
         )
     ''')
 
+    # Equipes
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS equipes_tb (
             id_equipe INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,6 +28,7 @@ def init_db():
         )
     ''')
 
+    # Membros da equipe
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS membros_equipe_tb (
             id_membro_equipe INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -118,7 +123,7 @@ def init_db():
         )
     ''')
 
-    # Permissões vinculadas ao perfil
+    # Permissões por perfil
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS permissoes_tb (
             id_permissao INTEGER PRIMARY KEY AUTOINCREMENT,
