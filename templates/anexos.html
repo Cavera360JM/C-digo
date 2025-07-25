@@ -4,19 +4,45 @@
     <meta charset="UTF-8">
     <title>Anexos da Tarefa {{ tarefa[0] }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Tema escuro antes do carregamento visível -->
+    <script>
+        document.documentElement.classList.add('dark');
+    </script>
 </head>
-<body>
-    <div class="container">
+<body class="dark">
+    <!-- Header com logo e botão de tema -->
+    <header class="top-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <div class="circle"></div>
+                <div class="check"></div>
+            </div>
+            <div class="logo-text">
+                <span class="title">TASK</span>
+                <span class="subtitle">MANAGEMENT</span>
+            </div>
+        </div>
+
+        <!-- Botão de alternar tema -->
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container">
         <h2>Anexos da Tarefa: {{ tarefa[0] }}</h2>
 
         {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul>
-              {% for message in messages %}
-                <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li class="mensagem">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endwith %}
 
         <form method="POST" enctype="multipart/form-data">
@@ -35,7 +61,17 @@
             <p>Nenhum anexo enviado ainda.</p>
         {% endif %}
 
-        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
-    </div>
+        <p style="margin-top: 20px; text-align: center;">
+            <a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a>
+        </p>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+    </script>
 </body>
 </html>

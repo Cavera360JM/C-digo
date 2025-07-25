@@ -4,27 +4,63 @@
     <meta charset="UTF-8">
     <title>Comentários da Tarefa {{ tarefa[0] }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Ativar tema escuro antes de renderizar -->
+    <script>
+        document.documentElement.classList.add('dark');
+    </script>
 </head>
-<body>
-    <div class="container">
+<body class="dark">
+    <!-- Header com logo e botão de tema -->
+    <header class="top-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <div class="circle"></div>
+                <div class="check"></div>
+            </div>
+            <div class="logo-text">
+                <span class="title">TASK</span>
+                <span class="subtitle">MANAGEMENT</span>
+            </div>
+        </div>
+
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <main class="container">
         <h2>Comentários da Tarefa: {{ tarefa[0] }}</h2>
 
         <form method="POST">
-            <textarea name="comentario" placeholder="Digite seu comentário" required style="width: 95%; height: 80px;"></textarea>
+            <textarea name="comentario" placeholder="Digite seu comentário" required style="width: 100%; height: 80px;"></textarea>
             <button type="submit">Adicionar Comentário</button>
         </form>
 
+        <h3 style="margin-top: 20px;">Lista de Comentários:</h3>
         {% if comentarios %}
-            <ul>
+            <ul class="comentario-lista">
                 {% for c in comentarios %}
-                    <li><strong>{{ c[1] }}</strong> ({{ c[3] }}):<br> {{ c[2] }}</li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>{{ c[1] }}</strong> <small>({{ c[3] }})</small><br>
+                        <div style="margin-top: 5px;">{{ c[2] }}</div>
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
             <p>Sem comentários ainda.</p>
         {% endif %}
 
-        <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
-    </div>
+        <p style="margin-top: 20px;"><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+    </script>
 </body>
 </html>

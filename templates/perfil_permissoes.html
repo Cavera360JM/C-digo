@@ -4,31 +4,44 @@
     <meta charset="UTF-8">
     <title>Permissões do Perfil {{ perfil[0] }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- Cabeçalho -->
+    <header class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo-task.png') }}" alt="Logo Task Management" class="logo-img">
+        </div>
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <main class="container">
         <h2>Permissões do Perfil: {{ perfil[0] }}</h2>
 
-        <form method="POST">
+        <form method="POST" class="form-permissao">
             <label for="nome_permissao">Nome da Permissão:</label>
-            <input type="text" name="nome_permissao" required>
+            <input type="text" name="nome_permissao" id="nome_permissao" required>
 
-            <label>
+            <label class="checkbox-label">
                 <input type="checkbox" name="permitido">
                 Permitido
             </label>
 
-            <button type="submit">Adicionar Permissão</button>
+            <button type="submit" class="btn-primary">Adicionar Permissão</button>
         </form>
 
         <h3>Permissões:</h3>
         {% if permissoes %}
-            <ul>
+            <ul class="permissoes-list">
                 {% for p in permissoes %}
                     <li>
-                        {{ p[2] }} — {{ 'Sim' if p[3] else 'Não' }}
-                        <form action="{{ url_for('excluir_permissao', id_permissao=p[0], id_perfil=id_perfil) }}" method="POST" style="display:inline;">
-                            <button type="submit" onclick="return confirm('Confirma excluir esta permissão?');">Excluir</button>
+                        <span class="permissao-nome">{{ p[2] }}</span>
+                        <span class="permissao-status">{{ '✅' if p[3] else '❌' }}</span>
+                        <form action="{{ url_for('excluir_permissao', id_permissao=p[0], id_perfil=id_perfil) }}" method="POST" class="form-inline">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Confirma excluir esta permissão?');">Excluir</button>
                         </form>
                     </li>
                 {% endfor %}
@@ -37,7 +50,19 @@
             <p>Nenhuma permissão cadastrada ainda.</p>
         {% endif %}
 
-        <p><a href="{{ url_for('perfis') }}">← Voltar para Perfis</a></p>
-    </div>
+        <div class="btn-voltar">
+            <a href="{{ url_for('perfis') }}" class="btn-link">← Voltar para Perfis</a>
+        </div>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+
+        document.body.classList.add('dark');
+    </script>
 </body>
 </html>

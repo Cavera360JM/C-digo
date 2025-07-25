@@ -4,16 +4,53 @@
     <meta charset="UTF-8">
     <title>Editar Equipe</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Ativar tema escuro antes de carregar a página -->
+    <script>
+        document.documentElement.classList.add('dark');
+    </script>
 </head>
-<body>
-    <div class="container">
+<body class="dark">
+    <!-- Cabeçalho com logo e botão de tema -->
+    <header class="top-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <div class="circle"></div>
+                <div class="check"></div>
+            </div>
+            <div class="logo-text">
+                <span class="title">TASK</span>
+                <span class="subtitle">MANAGEMENT</span>
+            </div>
+        </div>
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <main class="container">
         <h2>Editar Equipe</h2>
-        <form method="POST">
-            <input type="text" name="nome" value="{{ equipe[1] }}" required>
-            <input type="text" name="descricao" value="{{ equipe[2] }}" required>
+
+        <form method="POST" class="form-padrao">
+            <label for="nome">Nome da Equipe:</label>
+            <input type="text" id="nome" name="nome" value="{{ equipe[1] }}" required>
+
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" value="{{ equipe[2] }}" required>
+
             <button type="submit">Salvar Alterações</button>
         </form>
-        <a href="/equipes" style="color: #00f0ff;">← Voltar</a>
-    </div>
+
+        <p style="margin-top: 20px;"><a href="/equipes">← Voltar para Equipes</a></p>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+    </script>
 </body>
 </html>

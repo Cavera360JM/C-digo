@@ -4,16 +4,41 @@
     <meta charset="UTF-8">
     <title>Novo Perfil</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+
+    <!-- Cabeçalho -->
+    <header class="top-bar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo-task.png') }}" alt="Logo Task Management" class="logo-img">
+        </div>
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <main class="container">
         <h2>Criar Novo Perfil</h2>
-        <form method="POST">
+        <form method="POST" class="form-perfil">
             <label for="nome_perfil">Nome do Perfil:</label>
             <input type="text" name="nome_perfil" id="nome_perfil" required>
-            <button type="submit">Criar Perfil</button>
+            <button type="submit" class="btn-primary">Criar Perfil</button>
         </form>
-        <p><a href="{{ url_for('perfis') }}">← Voltar para Perfis</a></p>
-    </div>
+
+        <div class="btn-voltar">
+            <a href="{{ url_for('perfis') }}" class="btn-link">← Voltar para Perfis</a>
+        </div>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+
+        document.body.classList.add('dark');
+    </script>
 </body>
 </html>

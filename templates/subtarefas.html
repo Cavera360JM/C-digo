@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <title>Subtarefas da Tarefa {{ tarefa[0] }}</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        #toggle-theme {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        #toggle-theme svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    </style>
 </head>
 <body>
+    <button id="toggle-theme" title="Alternar tema">
+        <svg id="icon-theme" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21.64 13.65a9 9 0 01-11.29-11.3 9 9 0 1011.3 11.3z"/>
+        </svg>
+    </button>
+
     <div class="container">
         <h2>Subtarefas da Tarefa: {{ tarefa[0] }}</h2>
 
@@ -31,5 +54,24 @@
 
         <p><a href="/tarefas/{{ tarefa[1] }}">← Voltar para Tarefas</a></p>
     </div>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        const icon = document.getElementById('icon-theme');
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+
+            if (document.body.classList.contains('dark')) {
+                icon.innerHTML = '<path d="M21.64 13.65a9 9 0 01-11.29-11.3 9 9 0 1011.3 11.3z"/>';
+            } else {
+                icon.innerHTML = '<path d="M12 4V1m0 22v-3m8-8h3M1 12h3m15.36 6.36l2.12 2.12M4.22 4.22L6.34 6.34M16.24 7.76l2.12-2.12M4.22 19.78l2.12-2.12"/>';
+            }
+        });
+
+        // Ativar tema escuro por padrão
+        document.body.classList.add('dark');
+    </script>
 </body>
 </html>

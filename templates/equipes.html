@@ -4,27 +4,49 @@
     <meta charset="UTF-8">
     <title>Equipes</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <script>
+        document.documentElement.classList.add('dark'); // Evita piscar tema claro
+    </script>
 </head>
-<body>
-    <div class="container">
+<body class="dark">
+    <header class="top-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <div class="circle"></div>
+                <div class="check"></div>
+            </div>
+            <div class="logo-text">
+                <span class="title">TASK</span>
+                <span class="subtitle">MANAGEMENT</span>
+            </div>
+        </div>
+        <button id="toggle-theme" class="theme-toggle-btn" aria-label="Alternar tema">
+            <i class="fas fa-adjust"></i> Alternar Tema
+        </button>
+    </header>
+
+    <main class="container">
         <div class="top-buttons">
             <h2>Minhas Equipes</h2>
-            <a href="/nova_equipe">+ Nova Equipe</a>
-            <a href="/dashboard">← Voltar</a>
+            <div class="btn-group">
+                <a href="/nova_equipe" class="btn-link">+ Nova Equipe</a>
+                <a href="/dashboard" class="btn-link">← Voltar</a>
+            </div>
         </div>
 
         {% if equipes %}
             <div class="equipes-grid">
                 {% for equipe in equipes %}
                     <div class="equipe-card">
-                        <div class="equipe-nome">{{ equipe[1] }}</div>
-                        <div class="equipe-descricao">{{ equipe[2] }}</div>
-
+                        <h3>{{ equipe[1] }}</h3>
+                        <p>{{ equipe[2] }}</p>
                         <div class="equipe-actions">
                             <a href="/adicionar_membro/{{ equipe[0] }}">➕ Adicionar Membro</a>
                             <a href="/editar_equipe/{{ equipe[0] }}">✏️ Editar</a>
                             <form method="POST" action="/excluir_equipe/{{ equipe[0] }}" onsubmit="return confirm('Tem certeza que deseja excluir esta equipe?');">
-                                <button type="submit">🗑️ Excluir</button>
+                                <button type="submit" class="btn-danger">🗑️ Excluir</button>
                             </form>
                         </div>
                     </div>
@@ -37,22 +59,20 @@
         <hr style="margin: 40px 0; border: none; border-top: 1px solid #00f0ff40;">
 
         <div class="perfis-box">
-            <h2 style="color: #000000;">Perfis e Permissões</h2>
+            <h2>Perfis e Permissões</h2>
             {% if perfis %}
-                <ul style="padding-left: 20px; margin-top: 8px;">
+                <ul class="perfis-list">
                     {% for perfil in perfis %}
-                        <li style="margin-bottom: 10px;">
-                            <a href="/perfis/{{ perfil[0] }}" style="color: #0ff; text-decoration: underline;">
-                                {{ perfil[1] }}
-                            </a>
-                            <ul style="padding-left: 20px; margin-top: 5px;">
+                        <li>
+                            <a href="/perfis/{{ perfil[0] }}" class="perfil-nome">{{ perfil[1] }}</a>
+                            <ul class="permissoes-list">
                                 {% for permissao in permissoes_por_perfil[perfil[0]] %}
-                                    <li style="color: #ccc;">
+                                    <li>
                                         {{ permissao[0] }}:
                                         {% if permissao[1] %}
-                                            <span style="color: #0f0;">✔️</span>
+                                            <span class="perm-ok">✔️</span>
                                         {% else %}
-                                            <span style="color: #f33;">❌</span>
+                                            <span class="perm-no">❌</span>
                                         {% endif %}
                                     </li>
                                 {% endfor %}
@@ -61,9 +81,17 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p style="color: #888;">Nenhum perfil de permissão encontrado.</p>
+                <p class="texto-secundario">Nenhum perfil de permissão encontrado.</p>
             {% endif %}
         </div>
-    </div>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById('toggle-theme');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        });
+    </script>
 </body>
 </html>
